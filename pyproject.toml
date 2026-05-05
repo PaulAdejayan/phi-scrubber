@@ -1,0 +1,61 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "phi-scrubber"
+version = "0.1.0"
+description = "Pattern + NER de-identification for clinical free-text aligned with HIPAA Safe Harbor (45 CFR 164.514(b)(2))."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Paul Adejayan" }]
+keywords = ["hipaa", "phi", "de-identification", "clinical-nlp", "safe-harbor"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Healthcare Industry",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+]
+dependencies = [
+    "python-dateutil>=2.8",
+    "pydantic>=2.0",
+]
+
+[project.optional-dependencies]
+ner = [
+    "spacy>=3.7",
+]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "ruff>=0.1",
+]
+
+[project.scripts]
+phi-scrubber = "phi_scrubber.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/PaulAdejayan/phi-scrubber"
+Issues = "https://github.com/PaulAdejayan/phi-scrubber/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["phi_scrubber*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+addopts = "-v --tb=short"

@@ -1,0 +1,26 @@
+DISCHARGE SUMMARY
+
+Patient: Mr. John Adeyemi
+DOB: 4/22/1971
+MRN: 8842193
+Address: 1421 Maple Ave, Damascus, MD 20872
+Phone: (301) 555-0123
+Email: john.adeyemi@example.com
+
+Admission: 3/14/2026
+Discharge: 3/19/2026
+
+PCP: Dr. Sarah Chen at Shady Grove Medical
+Attending: Dr. Robert Park
+Patient was seen by Dr. Chen for follow-up.
+
+HISTORY:
+Mr. Adeyemi is a 54-year-old male presenting with chest pain. He has a
+prior history of MI in 2024 managed at Massachusetts General. Patient
+reports compliance with metoprolol.
+
+Online portal account: 3015550987
+Insurance member ID: ABC-12345-XYZ
+
+Discharged in stable condition. Follow up with Dr. Chen on 4/2/2026.
+Records sent to https://portal.shadygrove.example.com/123 for review.
