@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 920 720" font-family="'SF Mono','Cascadia Code','Consolas',monospace" font-size="13">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1e1e2e"/>
+      <stop offset="100%" stop-color="#181825"/>
+    </linearGradient>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="2" stdDeviation="6" flood-opacity="0.5"/>
+    </filter>
+  </defs>
+
+  <!-- Terminal window -->
+  <rect x="10" y="10" width="900" height="700" rx="8" fill="url(#bg)" stroke="#313244" filter="url(#shadow)"/>
+
+  <!-- Title bar -->
+  <rect x="10" y="10" width="900" height="32" rx="8" fill="#11111b"/>
+  <rect x="10" y="32" width="900" height="10" fill="#11111b"/>
+  <circle cx="30"  cy="26" r="6" fill="#f38ba8"/>
+  <circle cx="50"  cy="26" r="6" fill="#f9e2af"/>
+  <circle cx="70"  cy="26" r="6" fill="#a6e3a1"/>
+  <text x="460" y="30" fill="#cdd6f4" text-anchor="middle" font-size="11">phi-scrubber  ·  demo</text>
+
+  <!-- Section: input note -->
+  <text x="30" y="68" fill="#89dceb" font-weight="bold">$ cat tests/fixtures/sample_note.txt</text>
+
+  <text x="30"  y="92" fill="#cdd6f4">DISCHARGE SUMMARY</text>
+  <text x="30" y="116" fill="#cdd6f4">Patient: Mr. <tspan fill="#f38ba8">John Adeyemi</tspan></text>
+  <text x="30" y="132" fill="#cdd6f4">DOB: <tspan fill="#f38ba8">4/22/1971</tspan></text>
+  <text x="30" y="148" fill="#cdd6f4">MRN: <tspan fill="#f38ba8">8842193</tspan></text>
+  <text x="30" y="164" fill="#cdd6f4">Address: 1421 Maple Ave, <tspan fill="#f38ba8">Damascus, MD</tspan> <tspan fill="#f38ba8">20872</tspan></text>
+  <text x="30" y="180" fill="#cdd6f4">Phone: <tspan fill="#f38ba8">(301) 555-0123</tspan>     Email: <tspan fill="#f38ba8">john.adeyemi@example.com</tspan></text>
+  <text x="30" y="196" fill="#cdd6f4">Admission: <tspan fill="#f38ba8">3/14/2026</tspan>      Discharge: <tspan fill="#f38ba8">3/19/2026</tspan></text>
+  <text x="30" y="212" fill="#cdd6f4">PCP: <tspan fill="#f38ba8">Dr. Sarah Chen</tspan> at <tspan fill="#f38ba8">Shady Grove Medical</tspan></text>
+  <text x="30" y="228" fill="#cdd6f4">Insurance member ID: <tspan fill="#f38ba8">ABC-12345-XYZ</tspan></text>
+
+  <!-- Divider -->
+  <line x1="30" y1="252" x2="890" y2="252" stroke="#45475a" stroke-dasharray="2,4"/>
+
+  <!-- Command -->
+  <text x="30" y="284" fill="#89dceb" font-weight="bold">$ phi-scrubber tests/fixtures/sample_note.txt --patient-id pt_001</text>
+  <text x="30" y="304" fill="#6c7086">[phi-scrubber] mode: regex + NER (en_core_web_lg)</text>
+
+  <!-- Section: scrubbed output -->
+  <text x="30" y="332" fill="#a6e3a1" font-weight="bold">DISCHARGE SUMMARY</text>
+  <text x="30" y="356" fill="#a6e3a1">Patient: <tspan fill="#f9e2af">[PATIENT_1]</tspan></text>
+  <text x="30" y="372" fill="#a6e3a1">DOB: <tspan fill="#f9e2af">[DATE_SHIFTED]</tspan></text>
+  <text x="30" y="388" fill="#a6e3a1">MRN: <tspan fill="#f9e2af">[ID]</tspan></text>
+  <text x="30" y="404" fill="#a6e3a1">Address: 1421 Maple Ave, <tspan fill="#f9e2af">[CITY]</tspan> <tspan fill="#f9e2af">[ZIP]</tspan></text>
+  <text x="30" y="420" fill="#a6e3a1">Phone: <tspan fill="#f9e2af">[PHONE]</tspan>     Email: <tspan fill="#f9e2af">[EMAIL]</tspan></text>
+  <text x="30" y="436" fill="#a6e3a1">Admission: <tspan fill="#f9e2af">[DATE_SHIFTED]</tspan>      Discharge: <tspan fill="#f9e2af">[DATE_SHIFTED]</tspan></text>
+  <text x="30" y="452" fill="#a6e3a1">PCP: <tspan fill="#f9e2af">[DOCTOR_1]</tspan> at <tspan fill="#f9e2af">[HOSPITAL_1]</tspan></text>
+  <text x="30" y="468" fill="#a6e3a1">Insurance member ID: <tspan fill="#f9e2af">[ID]</tspan></text>
+
+  <!-- Divider -->
+  <line x1="30" y1="492" x2="890" y2="492" stroke="#45475a" stroke-dasharray="2,4"/>
+
+  <!-- Stats / verdict -->
+  <text x="30" y="524" fill="#89dceb" font-weight="bold">$ phi-scrubber sample_note.txt --audit audit.json</text>
+  <text x="30" y="544" fill="#cdd6f4">[phi-scrubber] wrote 397 chars -> output.txt, 14 spans replaced</text>
+  <text x="30" y="560" fill="#cdd6f4">[phi-scrubber] wrote audit -> audit.json</text>
+
+  <!-- Replacements legend -->
+  <text x="30" y="596" fill="#cba6f7" font-weight="bold">Replacements applied:</text>
+  <text x="30" y="616" fill="#cdd6f4">  <tspan fill="#f38ba8">PATIENT_1</tspan> 1×    <tspan fill="#f38ba8">DOCTOR_1</tspan> 1×    <tspan fill="#f38ba8">HOSPITAL_1</tspan> 1×    <tspan fill="#f38ba8">CITY</tspan> 1×</text>
+  <text x="30" y="632" fill="#cdd6f4">  <tspan fill="#f38ba8">DATE_SHIFTED</tspan> 4×    <tspan fill="#f38ba8">PHONE</tspan> 2×    <tspan fill="#f38ba8">ID</tspan> 2×    <tspan fill="#f38ba8">EMAIL</tspan> 1×    <tspan fill="#f38ba8">ZIP</tspan> 1×</text>
+
+  <!-- Disclaimer -->
+  <text x="30" y="672" fill="#f9e2af" font-style="italic">⚠  Tool implements HIPAA Safe Harbor §164.514(b)(2). Human reviewer still required</text>
+  <text x="30" y="688" fill="#f9e2af" font-style="italic">    for the "no actual knowledge" clause. Do not use as the sole de-id control.</text>
+</svg>
