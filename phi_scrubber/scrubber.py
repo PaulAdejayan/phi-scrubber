@@ -18,6 +18,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Optional
 
+from phi_scrubber.detectors.anchored_name import detect_anchored_names
 from phi_scrubber.detectors.gazetteer import detect_gazetteer
 from phi_scrubber.detectors.ner_detector import detect_ner, is_spacy_available
 from phi_scrubber.detectors.regex_detectors import RawSpan, detect_all_regex
@@ -157,6 +158,7 @@ class Scrubber:
         # 1. Run all detectors
         spans: list[RawSpan] = []
         spans.extend(detect_all_regex(text))
+        spans.extend(detect_anchored_names(text))
         spacy_ok = False
         if self.use_ner:
             spacy_ok = is_spacy_available()

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "phi-scrubber"
-version = "0.1.0"
+version = "0.1.1"
 description = "Pattern + NER de-identification for clinical free-text aligned with HIPAA Safe Harbor (45 CFR 164.514(b)(2))."
 readme = "README.md"
 requires-python = ">=3.10"

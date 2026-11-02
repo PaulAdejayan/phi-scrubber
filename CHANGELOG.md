@@ -6,6 +6,22 @@ All notable changes to this project are documented here. Format follows [Keep a 
 
 ### Planned (v0.2)
 
+---
+
+## [0.1.1] — 2026-11-02
+
+### Added
+
+- `phi_scrubber.detectors.anchored_name` — context-anchored name detector that fires only after `Pt` / `PT` / `Patient` / `PATIENT` / `Dr` / `DR` prefixes (with optional trailing period). Complements spaCy NER by catching cases the PERSON classifier misses in isolation: lowercase first names (`Pt paul adejayan`), multi-person lists via `and` / `or` / comma (`Pt Paul Adejayan and Maria dogmligng`), and non-English or heavily accented names. Wired into `Scrubber.scrub()` and merged with existing detectors via the standard longest-match-wins + category-priority rules.
+- 18 tests in `tests/test_anchored_name.py` covering positive cases, false-positive guards (prose without capitals, lowercase `pt` in narrative, `Pts` word), stop-word termination, span offset correctness, and confidence-below-NER guarantee.
+
+### Fixed
+
+- Regression gap where `Pt paul adejayan Maria Delgado` leaked `paul adejayan` through to the output. spaCy's `en_core_web_lg` is trained on title-cased OntoNotes 5 data and reliably misses lowercase PERSON entities; the new anchored detector covers this.
+- Same gap for multi-person lists where any name in the list was lowercase.
+
+
+
 - FHIR `DocumentReference` adapter (read base64 content, scrub, re-encode)
 - HTML before/after diff viewer for human review workflows
 
